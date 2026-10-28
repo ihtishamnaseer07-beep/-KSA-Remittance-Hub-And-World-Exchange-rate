@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSA Expat Hub - Live Remittance & Digital Services</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #333; padding: 15px; }
+        .container { max-width: 500px; margin: 0 auto; background: #ffffff; padding: 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: #f1f5f9; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .top-bar label { font-size: 11px; font-weight: bold; color: #475569; }
+        .top-bar select { width: auto; padding: 4px 8px; font-size: 12px; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; }
+
+        .nav-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 12px; text-align: center; background: #f1f5f9; border: none; border-radius: 10px; font-weight: bold; font-size: 13px; cursor: pointer; color: #64748b; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .tab-btn.active { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+
+        .page-section { display: none; }
+        .page-section.active-page { display: block; }
+
+        h1 { font-size: 20px; color: #1e3a8a; text-align: center; margin-bottom: 5px; font-weight: 800; }
+        .subtitle { font-size: 12px; color: #64748b; text-align: center; margin-bottom: 15px; }
+        
+        .live-status { background: #dcfce7; color: #166534; font-size: 11px; text-align: center; padding: 8px; border-radius: 8px; margin-bottom: 15px; font-weight: bold; border: 1px solid #bbf7d0; }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; color: #1e293b; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 15px; outline: none; background: #f8fafc; transition: 0.2s; }
+        input:focus, select:focus { border-color: #3b82f6; background: #fff; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        
+        .result-box { margin-top: 20px; background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #bfdbfe; padding: 18px; border-radius: 12px; }
+        .result-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #334155; }
+        .result-item span:last-child { font-weight: bold; color: #1e3a8a; }
+        .highlight-result { border-top: 1px dashed #93c5fd; padding-top: 12px; margin-top: 10px; font-size: 15px !important; }
+        .highlight-result span:last-child { color: #16a34a !important; font-size: 18px; }
+
+        /* --------------- بزنس پیج کے لیے نئی خوبصورت اسٹائلنگ --------------- */
+        .biz-hero { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
+        .biz-hero h2 { font-size: 18px; margin-bottom: 5px; }
+        .biz-hero p { font-size: 12px; opacity: 0.9; }
+
+        .offer-card { background: #ffffff; border: 2px solid #e2e8f0; border-radius: 14px; padding: 18px; margin-bottom: 15px; position: relative; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        .offer-card:hover { border-color: #3b82f6; box-shadow: 0 6px 20px rgba(59, 130, 246, 0.1); }
+        
+        .offer-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .offer-title { font-size: 16px; font-weight: bold; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+        
+        .badge-discount { background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; border: 1px solid #bbf7d0; }
+        .badge-vpn-price { background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; border: 1px solid #fecaca; }
+
+        .offer-desc { font-size: 13px; color: #475569; margin-bottom: 12px; line-height: 1.6; }
+        
+        .sim-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .sim-badge-item { background: #f1f5f9; color: #334155; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: bold; border: 1px solid #cbd5e1; display: flex; align-items: center; gap: 4px; }
+
+        .feature-list { list-style: none; margin-bottom: 15px; }
+        .feature-list li { font-size: 12px; color: #64748b; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+        .feature-list li::before { content: "✔"; color: #16a34a; font-weight: bold; }
+
+        .whatsapp-order-btn { display: flex; justify-content: center; align-items: center; gap: 8px; text-align: center; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); margin-top: 20px; transition: 0.3s; }
+        .whatsapp-order-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6); }
+    </style>
+</head>
+<body id="bodyTag">
+
+    <div class="container">
+        <!-- زبان بار -->
+        <div class="top-bar">
+            <label id="lblSelectLang">زبان / Language:</label>
+            <select id="langSelect" onchange="changeLanguage()">
+                <option value="ur">اردو</option>
+                <option value="hi">हिन्दी</option>
+                <option value="bn">বাংলা</option>
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+
+        <!-- ٹیبز کے بٹن -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" id="tabRemitBtn" onclick="switchTab('remit')">💰 لائیو ریٹ کیلکولیٹر</button>
+            <button class="tab-btn" id="tabBizBtn" onclick="switchTab('biz')">🔥 ڈیجیٹل آفرز (SIM & VPN)</button>
+        </div>
+
+        <!-- ---------------- پیج 1: لائیو ریمیٹنس کیلکولیٹر ---------------- -->
+        <div id="remitPage" class="page-section active-page">
+            <h1 id="appTitle">KSA Live Remittance Hub</h1>
+            <p id="appSubtitle" class="subtitle">سعودی عرب سے اپنے ملک رقم بھیجنے کا لائیو موازنہ</p>
+
+            <div id="liveStatusBox" class="live-status">🌐 لائیو مارکیٹ ریٹس لوڈ ہو رہے ہیں...</div>
+
+            <div class="form-group">
+                <label id="lblSarAmount">سعودی ریال (SAR) درج کریں:</label>
+                <input type="number" id="sarAmount" placeholder="1000" value="1000" oninput="calculateRemittance()">
+            </div>
+
+            <div class="form-group">
+                <label id="lblCountry">منزل مقصود (ملک اور کرنسی):</label>
+                <select id="destCountry" onchange="updateProviders(); calculateRemittance();">
+                    <option value="PKR">Pakistan (PKR)</option>
+                    <option value="INR">India (INR)</option>
+                    <option value="BDT">Bangladesh (BDT)</option>
+                    <option value="PHP">Philippines (PHP)</option>
+                    <option value="EGP">Egypt (EGP)</option>
+                    <option value="NPR">Nepal (NPR)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="lblProvider">سروس / بینک کا انتخاب کریں:</label>
+                <select id="provider" onchange="calculateRemittance()"></select>
+            </div>
+
+            <div class="result-box">
+                <div class="result-item">
+                    <span id="resProviderLabel">منتخب کردہ بینک/والٹ:</span>
+                    <span id="providerNameDisplay">-</span>
+                </div>
+                <div class="result-item">
+                    <span id="resRateLabel">لائیو ایکسچینج ریٹ:</span>
+                    <span id="rateDisplay">0</span>
+                </div>
+                <div class="result-item">
+                    <span id="resFeeLabel">منتقلی کی فیس:</span>
+                    <span id="feeDisplay">0 SAR</span>
+                </div>
+                <div class="result-item highlight-result">
+                    <span id="resFinalLabel">خاندان کو وصولی ہوگی:</span>
+                    <span id="finalDisplay">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ---------------- پیج 2: خوبصورت اور پریمیم بزنس ہب (SIM & VPN) ---------------- -->
+        <div id="bizPage" class="page-section">
+            <div class="biz-hero">
+                <h2 id="bizHeroTitle">🌟 ویلکم ٹو ڈیجیٹل اینڈ کمیونیکیشن سروسز</h2>
+                <p id="bizHeroSub">سعودی عرب میں بہترین اور سستی ترین خدمات ایک ہی جگہ پر</p>
+            </div>
+
+            <!-- آفر 1: سم کارڈز -->
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title">📶 <span id="simCardHeading">نئے سم کارڈز (پیکج پر ڈسکاؤنٹ)</span></div>
+                    <div class="badge-discount" id="discountBadge">20% آف</div>
+                </div>
+                <p id="simCardDesc">تمام بڑی سعودی ٹیلی کام کمپنیوں کے نئے سم کارڈز فوری دستیاب ہیں۔ انٹرنیٹ اور کالنگ پیکجز پر حاصل کریں شاندار رعایت!</p>
+                
+                <ul class="feature-list">
+                    <li id="simFeat1">فوری ایکٹیویشن اور آسان تصدیق</li>
+                    <li id="simFeat2">بہترین انٹرنیٹ اور کالنگ بنڈلز</li>
+                </ul>
+
+                <div class="sim-grid">
+                    <span class="sim-badge-item">🟢 STC</span>
+                    <span class="sim-badge-item">🟣 Zain</span>
+                    <span class="sim-badge-item">🔵 Mobily</span>
+                    <span class="sim-badge-item">🔴 Red Bull</span>
+                    <span class="sim-badge-item">🟠 Salam</span>
+                </div>
+            </div>
+
+            <!-- آفر 2: وی پی این -->
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title">🔒 <span id="vpnHeading">پریمیم وی پی این (VPN) سروس</span></div>
+                    <div class="badge-vpn-price" id="vpnBadge">صرف 15 SAR</div>
+                </div>
+                <p id="vpnDesc">انتہائی تیز رفتار، محفوظ اور بلاتعطل کنکشن جو تمام کالنگ ایپس اور بلاک شدہ سروسز کے لیے بہترین کام کرتا ہے۔</p>
+                
+                <ul class="feature-list">
+                    <li id="vpnFeat1">تمام واٹس ایپ، باٹم اور کالنگ ایپس کے لیے بہترین</li>
+                    <li id="vpnFeat2">لامحدود ڈیٹا اور ہائی اسپیڈ سرورز</li>
+                </ul>
+            </div>
+
+            <!-- واٹس ایپ آرڈر بٹن -->
+            <a id="orderWhatsAppBtn" href="https://wa.me/966593686007?text=Hello,%20I%20want%20to%20order%20a%20SIM%20card%20or%20VPN." class="whatsapp-order-btn" target="_blank">
+                💬 <span id="waBtnText">واٹس ایپ پر رابطہ کریں اور آرڈر کریں</span>
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        let liveRatesData = {};
+
+        const translations = {
+            ur: {
+                selectLang: "زبان / Language:",
+                tabRemit: "💰 لائیو ریٹ کیلکولیٹر",
+                tabBiz: "🔥 ڈیجیٹل آفرز (SIM & VPN)",
+                title: "KSA Live Remittance Hub",
+                subtitle: "سعودی عرب سے اپنے ملک رقم بھیجنے کا لائیو موازنہ",
+                lblSar: "سعودی ریال (SAR) درج کریں:",
+                lblCountry: "منزل مقصود (ملک اور کرنسی):",
+                lblProvider: "سروس / بینک کا انتخاب کریں:",
+                resProv: "منتخب کردہ بینک/والٹ:",
+                resRate: "لائیو ایکسچینج ریٹ:",
+                resFee: "منتقلی کی فیس:",
+                resFinal: "خاندان کو وصولی ہوگی:",
+                heroTitle: "🌟 ویلکم ٹو ڈیجیٹل اینڈ کمیونیکیشن سروسز",
+                heroSub: "سعودی عرب میں بہترین اور سستی ترین خدمات ایک ہی جگہ پر",
+                simHeading: "نئے سم کارڈز (پیکج پر ڈسکاؤنٹ)",
+                simBadge: "20% آف",
+                simDesc: "تمام بڑی سعودی ٹیلی کام کمپنیوں کے نئے سم کارڈز فوری دستیاب ہیں۔ انٹرنیٹ اور کالنگ پیکجز پر حاصل کریں شاندار رعایت!",
+                simFeat1: "فوری ایکٹیویشن اور آسان تصدیق",
+                simFeat2: "بہترین انٹرنیٹ اور کالنگ بنڈلز",
+                vpnHeading: "پریمیم وی پی این (VPN) سروس",
+                vpnBadge: "صرف 15 SAR",
+                vpnDesc: "انتہائی تیز رفتار، محفوظ اور بلاتعطل کنکشن جو تمام کالنگ ایپس اور بلاک شدہ سروسز کے لیے بہترین کام کرتا ہے۔",
+                vpnFeat1: "تمام واٹس ایپ، باٹم اور کالنگ ایپس کے لیے بہترین",
+                vpnFeat2: "لامحدود ڈیٹا اور ہائی اسپیڈ سرورز",
+                waBtn: "واٹس ایپ پر رابطہ کریں اور آرڈر کریں"
+            },
+            en: {
+                selectLang: "Language:",
+                tabRemit: "💰 Live Rate Calculator",
+                tabBiz: "🔥 Digital Offers (SIM & VPN)",
+                title: "KSA Live Remittance Hub",
+                subtitle: "Live Comparison to Send Money from KSA",
+                lblSar: "Enter Saudi Riyal (SAR):",
+                lblCountry: "Destination Country & Currency:",
+                lblProvider: "Select Service / Bank:",
+                resProv: "Selected Bank/Wallet:",
+                resRate: "Live Exchange Rate:",
+                resFee: "Transfer Fee:",
+                resFinal: "Family Will Receive:",
+                heroTitle: "🌟 Welcome to Digital & Comm. Services",
+                heroSub: "Best and affordable services in Saudi Arabia at one place",
+                simHeading: "New SIM Cards (Package Discount)",
+                simBadge: "20% OFF",
+                simDesc: "New SIM cards from all major Saudi telecom operators available instantly. Get amazing discounts on internet and calling packages!",
+                simFeat1: "Instant activation and easy verification",
+                simFeat2: "Best internet and calling bundles",
+                vpnHeading: "Premium VPN Service",
+                vpnBadge: "Only 15 SAR",
+                vpnDesc: "Ultra-fast, secure, and uninterrupted connection working perfectly for all calling apps and restricted services.",
+                vpnFeat1: "Best for WhatsApp, Botim, and all calling apps",
+                vpnFeat2: "Unlimited data and high-speed servers",
+                waBtn: "Contact on WhatsApp & Order"
+            },
+            ar: {
+                selectLang: "اللغة:",
+                tabRemit: "💰 حاسبة الأسعار الحية",
+                tabBiz: "🔥 عروض رقمية (شريحة و VPN)",
+                title: "KSA Live Remittance Hub",
+                subtitle: "مقارنة حية لتحويل الأموال من المملكة",
+                lblSar: "أدخل الريال السعودي (SAR):",
+                lblCountry: "بلد الوجهة والعملة:",
+                lblProvider: "اختر الخدمة / البنك:",
+                resProv: "البنك / المحفظة المختارة:",
+                resRate: "سعر الصرف الحقيقي:",
+                resFee: "رسوم التحويل:",
+                resFinal: "ستستلم العائلة إجمالي:",
+                heroTitle: "🌟 مرحباً بكم في خدمات الاتصالات والرقمنة",
+                heroSub: "أفضل وأرخص الخدمات في المملكة العربية السعودية في مكان واحد",
+                simHeading: "شرائح اتصال جديدة (خصم على الباقات)",
+                simBadge: "خصم 20%",
+                simDesc: "شرائح اتصال جديدة لجميع شركات الاتصالات الكبرى في السعودية متاحة فوراً. احصل على خصومات مذهلة على باقات الإنترنت والمكالمات!",
+                simFeat1: "تفعيل فوري وتوثيق سهل",
+                simFeat2: "أفضل عروض الإنترنت والمكالمات",
+                vpnHeading: "خدمة VPN مميزة وآمنة",
+                vpnBadge: "فقط 15 ريال",
+                vpnDesc: "اتصال فائق السرعة وآمن ومستقر يعمل بشكل مثالي لجميع تطبيقات المكالمات والخدمات المحجوبة.",
+                vpnFeat1: "مثالي لتطبيقات واتساب وبوتيم ومكالمات الفيديو",
+                vpnFeat2: "بيانات غير محدودة وسورفرات فائقة السرعة",
+                waBtn: "تواصل عبر واتساب واطلب الآن"
+            },
+            hi: {
+                selectLang: "भाषा चुनें:",
+                tabRemit: "💰 लाइव रेट कैलकुलेटर",
+                tabBiz: "🔥 डिजिटल ऑफर (SIM & VPN)",
+                title: "KSA Live Remittance Hub",
+                subtitle: "सऊदी अरब से पैसे भेजने की लाइव तुलना",
+                lblSar: "साउदी रियाल (SAR) दर्ज करें:",
+                lblCountry: "गंतव्य देश:",
+                lblProvider: "सेवा / बैंक चुनें:",
+                resProv: "चयनित बैंक:",
+                resRate: "लाइव दर:",
+                resFee: "शुल्क:",
+                resFinal: "कुल राशि प्राप्त होगी:",
+                heroTitle: "🌟 डिजिटल और संचार सेवाओं में आपका स्वागत है",
+                heroSub: "सऊदी अरब में सबसे अच्छी और किफायती सेवाएं",
+                simHeading: "नए सिम कार्ड (पैकेज छूट)",
+                simBadge: "20% छूट",
+                simDesc: "सभी प्रमुख सऊदी ऑपरेटरों के नए सिम कार्ड तुरंत उपलब्ध हैं। इंटरनेट और कॉलिंग पैकेज पर शानदार छूट पाएं!",
+                simFeat1: "तुरंत सक्रियण और आसान सत्यापन",
+                simFeat2: "सर्वोत्तम इंटरनेट और कॉलिंग बंडल",
+                vpnHeading: "प्रीमियम वीपीएन सेवा",
+                vpnBadge: "केवल 15 SAR",
+                vpnDesc: "अति-तेज, सुरक्षित और निर्बाध कनेक्शन जो सभी कॉलिंग ऐप्स के लिए बेहतरीन काम करता है।",
+                vpnFeat1: "सभी कॉलिंग ऐप्स के लिए सर्वश्रेष्ठ",
+                vpnFeat2: "असीमित डेटा और हाई-स्पीड सर्वर",
+                waBtn: "व्हाट्सएप पर संपर्क करें और ऑर्डर करें"
+            },
+            bn: {
+                selectLang: "ভাষা নির্বাচন:",
+                tabRemit: "💰 লাইভ রেট ক্যালকুলেটর",
+                tabBiz: "🔥 ডিজিটাল অফার (SIM & VPN)",
+                title: "KSA Live Remittance Hub",
+                subtitle: "সৌদি আরব থেকে টাকা পাঠানোর লাইভ তুলনা",
+                lblSar: "সৌদি রিয়াল (SAR) লিখুন:",
+                lblCountry: "গন্তব্য দেশ:",
+                lblProvider: "সেবা / ব্যাংক নির্বাচন:",
+                resProv: "নির্বাচিত ব্যাংক:",
+                resRate: "লাইভ রেট:",
+                resFee: "ফি:",
+                resFinal: "পরিবার পাবে:",
+                heroTitle: "🌟 ডিজিটাল এবং যোগাযোগ সেবায় স্বাগতম",
+                heroSub: "সৌদি আরবে সেরা এবং সাশ্রয়ী সেবা",
+                simHeading: "নতুন সিম কার্ড (প্যাকেজ ডিসকাউন্ট)",
+                simBadge: "২০% ছাড়",
+                simDesc: "সৌদির সকল প্রধান টেলিকম অপারেটরের নতুন সিম কার্ড উপলব্ধ। ইন্টারনেট ও কলিং প্যাকেজে দারুণ ছাড় পান!",
+                simFeat1: "দ্রুত অ্যাক্টিভেশন এবং সহজ যাচাইকরণ",
+                simFeat2: "সেরা ইন্টারনেট ও কলিং বান্ডেল",
+                vpnHeading: "প্রিমিয়াম ভিপিএন সেবা",
+                vpnBadge: "মাত্র ১৫ SAR",
+                vpnDesc: "অতি দ্রুত, নিরাপদ এবং অবিচ্ছিন্ন সংযোগ যা সমস্ত কলিং অ্যাপের জন্য নিখুঁতভাবে কাজ করে।",
+                vpnFeat1: "সকল কলিং অ্যাপের জন্য সেরা",
+                vpnFeat2: "সীমাহীন ডেটা এবং হাই-স্পিড সার্ভার",
+                waBtn: "হোয়াটসঅ্যাপে যোগাযোগ করুন এবং অর্ডার করুন"
+            }
+        };
+
+        const providerConfigs = {
+            PKR: [
+                { name: "Al Rajhi / Enjaz", fee: 15, margin: -0.15 },
+                { name: "STC Pay", fee: 12, margin: -0.25 },
+                { name: "Urpay", fee: 10, margin: -0.05 },
+                { name: "Barq App", fee: 5, margin: +0.05 }
+            ],
+            INR: [
+                { name: "Al Rajhi / Enjaz", fee: 15, margin: -0.05 },
+                { name: "STC Pay", fee: 12, margin: -0.10 },
+                { name: "Barq App", fee: 5, margin: +0.02 }
+            ],
+            BDT: [
+                { name: "Al Rajhi / Enjaz", fee: 15, margin: -0.10 },
+                { name: "STC Pay", fee: 12, margin: -0.15 },
+                { name: "Barq App", fee: 5, margin: +0.05 }
+            ],
+            PHP: [
+                { name: "Al Rajhi / Enjaz", fee: 15, margin: -0.05 },
+                { name: "STC Pay", fee: 12, margin: -0.10 },
+                { name: "Barq App", fee: 5, margin: +0.03 }
+            ],
+            EGP: [
+                { name: "Al Rajhi / Enjaz", fee: 20, margin: -0.10 },
+                { name: "STC Pay", fee: 15, margin: -0.15 }
+            ],
+            NPR: [
+                { name: "Al Rajhi / Enjaz", fee: 15, margin: -0.10 },
+                { name: "Barq App", fee: 5, margin: +0.05 }
+            ]
+        };
+
+        async function fetchLiveRates() {
+            try {
+                let response = await fetch('https://open.er-api.com/v6/latest/SAR');
+                let data = await response.json();
+                if (data && data.rates) {
+                    liveRatesData = data.rates;
+                    document.getElementById('liveStatusBox').innerText = "🌐 عالمی مارکیٹ سے لائیو ریٹس منسلک ہو چکے ہیں";
+                    document.getElementById('liveStatusBox').style.background = "#dcfce7";
+                    document.getElementById('liveStatusBox').style.color = "#166534";
+                    updateProviders();
+                    calculateRemittance();
+                }
+            } catch (error) {
+                liveRatesData = { PKR: 74.50, INR: 22.40, BDT: 31.80, PHP: 15.20, EGP: 13.10, NPR: 35.70 };
+                document.getElementById('liveStatusBox').innerText = "⚠️ آفلاین موڈ: تخمینی لائیو ریٹس فعال ہیں";
+                document.getElementById('liveStatusBox').style.background = "#fef9c3";
+                document.getElementById('liveStatusBox').style.color = "#854d0e";
+                updateProviders();
+                calculateRemittance();
+            }
+        }
+
+        function switchTab(tabName) {
+            document.getElementById('remitPage').classList.remove('active-page');
+            document.getElementById('bizPage').classList.remove('active-page');
+            document.getElementById('tabRemitBtn').classList.remove('active');
+            document.getElementById('tabBizBtn').classList.remove('active');
+
+            if(tabName === 'remit') {
+                document.getElementById('remitPage').classList.add('active-page');
+                document.getElementById('tabRemitBtn').classList.add('active');
+            } else {
+                document.getElementById('bizPage').classList.add('active-page');
+                document.getElementById('tabBizBtn').classList.add('active');
+            }
+        }
+
+        function changeLanguage() {
+            let lang = document.getElementById('langSelect').value;
+            let t = translations[lang] || translations['en'];
+            
+            document.getElementById('htmlRoot').setAttribute('dir', (lang === 'en' || lang === 'hi' || lang === 'bn') ? 'ltr' : 'rtl');
+            document.getElementById('bodyTag').style.textAlign = (lang === 'en' || lang === 'hi' || lang === 'bn') ? 'left' : 'right';
+
+            document.getElementById('lblSelectLang').innerText = t.selectLang;
+            document.getElementById('tabRemitBtn').innerText = t.tabRemit;
+            document.getElementById('tabBizBtn').innerText = t.tabBiz;
+            document.getElementById('appTitle').innerText = t.title;
+            document.getElementById('appSubtitle').innerText = t.subtitle;
+            document.getElementById('lblSarAmount').innerText = t.lblSar;
+            document.getElementById('lblCountry').innerText = t.lblCountry;
+            document.getElementById('lblProvider').innerText = t.lblProvider;
+            document.getElementById('resProviderLabel').innerText = t.resProv;
+            document.getElementById('resRateLabel').innerText = t.resRate;
+            document.getElementById('resFeeLabel').innerText = t.resFee;
+            document.getElementById('resFinalLabel').innerText = t.resFinal;
+
+            // بزنس پیج کے نئے خوبصورت ٹیکسٹز
+            document.getElementById('bizHeroTitle').innerText = t.heroTitle;
+            document.getElementById('bizHeroSub').innerText = t.heroSub;
+            document.getElementById('simCardHeading').innerText = t.simHeading;
+            document.getElementById('discountBadge').innerText = t.simBadge;
+            document.getElementById('simCardDesc').innerText = t.simDesc;
+            document.getElementById('simFeat1').innerText = t.simFeat1;
+            document.getElementById('simFeat2').innerText = t.simFeat2;
+            document.getElementById('vpnHeading').innerText = t.vpnHeading;
+            document.getElementById('vpnBadge').innerText = t.vpnBadge;
+            document.getElementById('vpnDesc').innerText = t.vpnDesc;
+            document.getElementById('vpnFeat1').innerText = t.vpnFeat1;
+            document.getElementById('vpnFeat2').innerText = t.vpnFeat2;
+            document.getElementById('waBtnText').innerText = t.waBtn;
+        }
+
+        function updateProviders() {
+            let countryKey = document.getElementById('destCountry').value;
+            let providerSelect = document.getElementById('provider');
+            providerSelect.innerHTML = "";
+
+            let providers = providerConfigs[countryKey] || [];
+            let baseRate = liveRatesData[countryKey] || 74.00;
+
+            providers.forEach((prov, index) => {
+                let calculatedRate = (baseRate + prov.margin).toFixed(2);
+                let opt = document.createElement('option');
+                opt.value = index;
+                opt.setAttribute('data-rate', calculatedRate);
+                opt.setAttribute('data-fee', prov.fee);
+                opt.text = prov.name + ` (Rate: ${calculatedRate} | Fee: ${prov.fee} SAR)`;
+                providerSelect.appendChild(opt);
+            });
+        }
+
+        function calculateRemittance() {
+            let sar = parseFloat(document.getElementById('sarAmount').value) || 0;
+            let countryKey = document.getElementById('destCountry').value;
+            let providerSelect = document.getElementById('provider');
+            
+            if (providerSelect.options.length === 0) return;
+
+            let selectedOption = providerSelect.options[providerSelect.selectedIndex];
+            if (!selectedOption) return;
+
+            let rate = parseFloat(selectedOption.getAttribute('data-rate')) || 0;
+            let fee = parseFloat(selectedOption.getAttribute('data-fee')) || 0;
+            let providerName = selectedOption.text.split('(')[0].trim();
+
+            let effectiveSAR = sar - fee;
+            if(effectiveSAR < 0) effectiveSAR = 0;
+            let finalAmount = effectiveSAR * rate;
+
+            document.getElementById('providerNameDisplay').innerText = providerName;
+            document.getElementById('rateDisplay').innerText = "1 SAR = " + rate + " " + countryKey;
+            document.getElementById('feeDisplay').innerText = fee + " SAR";
+            document.getElementById('finalDisplay').innerText = finalAmount.toLocaleString('en-US', {maximumFractionDigits: 2}) + " " + countryKey;
+        }
+
+        window.onload = function() {
+            changeLanguage();
+            fetchLiveRates();
+        };
+    </script>
+</body>
+</html>
