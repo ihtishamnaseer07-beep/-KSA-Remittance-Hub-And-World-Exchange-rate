@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KSA Expat Hub - Live Remittance & Digital Services</title>
+    
+    <!-- سوشل میڈیا شیئرنگ اور SEO کے لیے اوپن گراف ٹیگز -->
+    <meta property="og:title" content="KSA Expat Hub - Live Remittance & Digital Services">
+    <meta property="og:description" content="سعودی عرب سے ریمٹنس ریٹس کا لائیو موازنہ، سستی سمز، وی پی این اور ٹریول سروسز!">
+    <meta property="og:type" content="website">
+
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0f172a; color: #333; padding: 15px; }
@@ -36,7 +42,7 @@
         .highlight-result { border-top: 1px dashed #93c5fd; padding-top: 12px; margin-top: 10px; font-size: 15px !important; }
         .highlight-result span:last-child { color: #16a34a !important; font-size: 18px; }
 
-        /* --------------- بزنس پیج کے لیے نئی خوبصورت اسٹائلنگ --------------- */
+        /* بزنس پیج کی اسٹائلنگ */
         .biz-hero { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2); }
         .biz-hero h2 { font-size: 18px; margin-bottom: 5px; }
         .biz-hero p { font-size: 12px; opacity: 0.9; }
@@ -49,6 +55,7 @@
         
         .badge-discount { background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; border: 1px solid #bbf7d0; }
         .badge-vpn-price { background: #fee2e2; color: #b91c1c; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; border: 1px solid #fecaca; }
+        .badge-travel { background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold; border: 1px solid #bae6fd; }
 
         .offer-desc { font-size: 13px; color: #475569; margin-bottom: 12px; line-height: 1.6; }
         
@@ -59,8 +66,8 @@
         .feature-list li { font-size: 12px; color: #64748b; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
         .feature-list li::before { content: "✔"; color: #16a34a; font-weight: bold; }
 
-        .whatsapp-order-btn { display: flex; justify-content: center; align-items: center; gap: 8px; text-align: center; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4); margin-top: 20px; transition: 0.3s; }
-        .whatsapp-order-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.6); }
+        .whatsapp-order-btn { display: flex; justify-content: center; align-items: center; gap: 8px; text-align: center; background: linear-gradient(135deg, #16a34a, #22c55e); color: white; width: 100%; padding: 12px; border-radius: 10px; border: none; text-decoration: none; font-weight: bold; font-size: 14px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3); cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .whatsapp-order-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); }
     </style>
 </head>
 <body id="bodyTag">
@@ -133,10 +140,10 @@
             </div>
         </div>
 
-        <!-- ---------------- پیج 2: خوبصورت اور پریمیم بزنس ہب (SIM & VPN) ---------------- -->
+        <!-- ---------------- پیج 2: خوبصورت اور پریمیم بزنس ہب ---------------- -->
         <div id="bizPage" class="page-section">
             <div class="biz-hero">
-                <h2 id="bizHeroTitle">🌟 ویلکم ٹو ڈیجیٹل اینڈ کمیونیکیشن سروسز</h2>
+                <h2 id="bizHeroTitle">🌟 ویلکم ٹو ڈیجیٹل اینڈ ٹریول سروسز</h2>
                 <p id="bizHeroSub">سعودی عرب میں بہترین اور سستی ترین خدمات ایک ہی جگہ پر</p>
             </div>
 
@@ -160,6 +167,10 @@
                     <span class="sim-badge-item">🔴 Red Bull</span>
                     <span class="sim-badge-item">🟠 Salam</span>
                 </div>
+
+                <button class="whatsapp-order-btn" onclick="openWhatsApp('sim')">
+                    💬 <span id="waSimBtn">سم کارڈ کے لیے واٹس ایپ پر رابطہ کریں</span>
+                </button>
             </div>
 
             <!-- آفر 2: وی پی این -->
@@ -174,17 +185,39 @@
                     <li id="vpnFeat1">تمام واٹس ایپ، باٹم اور کالنگ ایپس کے لیے بہترین</li>
                     <li id="vpnFeat2">لامحدود ڈیٹا اور ہائی اسپیڈ سرورز</li>
                 </ul>
+
+                <button class="whatsapp-order-btn" onclick="openWhatsApp('vpn')">
+                    💬 <span id="waVpnBtn">15 ریال والا وی پی این حاصل کریں</span>
+                </button>
             </div>
 
-            <!-- واٹس ایپ آرڈر بٹن -->
-            <a id="orderWhatsAppBtn" href="https://wa.me/966593686007?text=Hello,%20I%20want%20to%20order%20a%20SIM%20card%20or%20VPN." class="whatsapp-order-btn" target="_blank">
-                💬 <span id="waBtnText">واٹس ایپ پر رابطہ کریں اور آرڈر کریں</span>
-            </a>
+            <!-- آفر 3: ٹریول اور ویزا سروسز (نیا اضافہ) -->
+            <div class="offer-card">
+                <div class="offer-header">
+                    <div class="offer-title">✈️ <span id="travelHeading">فلائٹ ٹکٹس اور ویزا سروسز</span></div>
+                    <div class="badge-travel" id="travelBadge">بیسٹ ریٹس</div>
+                </div>
+                <p id="travelDesc">پاکستان، بھارت اور دیگر ممالک کے لیے سستے فلائٹ ٹکٹس، فیملی وزٹ ویزا اور مکمل سفری معاونت۔</p>
+                
+                <ul class="feature-list">
+                    <li id="travelFeat1">ڈومیسٹک اور انٹرنیشنل فلائٹ ٹکٹس</li>
+                    <li id="travelFeat2">فیملی وزٹ ویزا اور ٹریول گائیڈنس</li>
+                </ul>
+
+                <button class="whatsapp-order-btn" onclick="openWhatsApp('travel')">
+                    💬 <span id="waTravelBtn">ٹکٹ یا ویزا کے لیے رابطہ کریں</span>
+                </button>
+            </div>
         </div>
 
     </div>
 
     <script>
+        // ----------------------------------------------------
+        // 🛠️ اپنا واٹس ایپ نمبر یہاں درج کریں (بغیر + اور بغیر اسپیس کے)
+        // ----------------------------------------------------
+        const MY_WHATSAPP_NUMBER = "966500000000"; 
+
         let liveRatesData = {};
 
         const translations = {
@@ -201,7 +234,7 @@
                 resRate: "لائیو ایکسچینج ریٹ:",
                 resFee: "منتقلی کی فیس:",
                 resFinal: "خاندان کو وصولی ہوگی:",
-                heroTitle: "🌟 ویلکم ٹو ڈیجیٹل اینڈ کمیونیکیشن سروسز",
+                heroTitle: "🌟 ویلکم ٹو ڈیجیٹل اینڈ ٹریول سروسز",
                 heroSub: "سعودی عرب میں بہترین اور سستی ترین خدمات ایک ہی جگہ پر",
                 simHeading: "نئے سم کارڈز (پیکج پر ڈسکاؤنٹ)",
                 simBadge: "20% آف",
@@ -213,7 +246,14 @@
                 vpnDesc: "انتہائی تیز رفتار، محفوظ اور بلاتعطل کنکشن جو تمام کالنگ ایپس اور بلاک شدہ سروسز کے لیے بہترین کام کرتا ہے۔",
                 vpnFeat1: "تمام واٹس ایپ، باٹم اور کالنگ ایپس کے لیے بہترین",
                 vpnFeat2: "لامحدود ڈیٹا اور ہائی اسپیڈ سرورز",
-                waBtn: "واٹس ایپ پر رابطہ کریں اور آرڈر کریں"
+                travelHeading: "فلائٹ ٹکٹس اور ویزا سروسز",
+                travelBadge: "بیسٹ ریٹس",
+                travelDesc: "پاکستان، بھارت اور دیگر ممالک کے لیے سستے فلائٹ ٹکٹس، فیملی وزٹ ویزا اور مکمل سفری معاونت۔",
+                travelFeat1: "ڈومیسٹک اور انٹرنیشنل فلائٹ ٹکٹس",
+                travelFeat2: "فیملی وزٹ ویزا اور ٹریول گائیڈنس",
+                waSim: "سم کارڈ کے لیے واٹس ایپ پر رابطہ کریں",
+                waVpn: "15 ریال والا وی پی این حاصل کریں",
+                waTravel: "ٹکٹ یا ویزا کے لیے رابطہ کریں"
             },
             en: {
                 selectLang: "Language:",
@@ -228,7 +268,7 @@
                 resRate: "Live Exchange Rate:",
                 resFee: "Transfer Fee:",
                 resFinal: "Family Will Receive:",
-                heroTitle: "🌟 Welcome to Digital & Comm. Services",
+                heroTitle: "🌟 Welcome to Digital & Travel Services",
                 heroSub: "Best and affordable services in Saudi Arabia at one place",
                 simHeading: "New SIM Cards (Package Discount)",
                 simBadge: "20% OFF",
@@ -240,7 +280,14 @@
                 vpnDesc: "Ultra-fast, secure, and uninterrupted connection working perfectly for all calling apps and restricted services.",
                 vpnFeat1: "Best for WhatsApp, Botim, and all calling apps",
                 vpnFeat2: "Unlimited data and high-speed servers",
-                waBtn: "Contact on WhatsApp & Order"
+                travelHeading: "Flight Tickets & Visa Services",
+                travelBadge: "Best Rates",
+                travelDesc: "Cheap flight tickets for Pakistan, India, and other countries, family visit visas, and complete travel support.",
+                travelFeat1: "Domestic and international flight tickets",
+                travelFeat2: "Family visit visas & travel guidance",
+                waSim: "Contact on WhatsApp for SIM Card",
+                waVpn: "Get 15 SAR Premium VPN",
+                waTravel: "Contact for Tickets or Visas"
             },
             ar: {
                 selectLang: "اللغة:",
@@ -255,7 +302,7 @@
                 resRate: "سعر الصرف الحقيقي:",
                 resFee: "رسوم التحويل:",
                 resFinal: "ستستلم العائلة إجمالي:",
-                heroTitle: "🌟 مرحباً بكم في خدمات الاتصالات والرقمنة",
+                heroTitle: "🌟 مرحباً بكم في خدمات الاتصالات والسفر",
                 heroSub: "أفضل وأرخص الخدمات في المملكة العربية السعودية في مكان واحد",
                 simHeading: "شرائح اتصال جديدة (خصم على الباقات)",
                 simBadge: "خصم 20%",
@@ -267,7 +314,14 @@
                 vpnDesc: "اتصال فائق السرعة وآمن ومستقر يعمل بشكل مثالي لجميع تطبيقات المكالمات والخدمات المحجوبة.",
                 vpnFeat1: "مثالي لتطبيقات واتساب وبوتيم ومكالمات الفيديو",
                 vpnFeat2: "بيانات غير محدودة وسورفرات فائقة السرعة",
-                waBtn: "تواصل عبر واتساب واطلب الآن"
+                travelHeading: "تذاكر الطيران وخدمات التأشيرات",
+                travelBadge: "أفضل الأسعار",
+                travelDesc: "تذاكر طيران رخيصة لجميع الدول، تأشيرات الزيارة العائلية، ودعم كامل للسفر.",
+                travelFeat1: "تذاكر طيران محلية ودولية",
+                travelFeat2: "تأشيرات الزيارة العائلية وإرشادات السفر",
+                waSim: "تواصل عبر واتساب لشراء شريحة",
+                waVpn: "احصل على VPN بـ 15 ريال",
+                waTravel: "تواصل لتذاكر الطيران أو التأشيرات"
             },
             hi: {
                 selectLang: "भाषा चुनें:",
@@ -282,7 +336,7 @@
                 resRate: "लाइव दर:",
                 resFee: "शुल्क:",
                 resFinal: "कुल राशि प्राप्त होगी:",
-                heroTitle: "🌟 डिजिटल और संचार सेवाओं में आपका स्वागत है",
+                heroTitle: "🌟 डिजिटल और यात्रा सेवाओं में आपका स्वागत है",
                 heroSub: "सऊदी अरब में सबसे अच्छी और किफायती सेवाएं",
                 simHeading: "नए सिम कार्ड (पैकेज छूट)",
                 simBadge: "20% छूट",
@@ -294,7 +348,14 @@
                 vpnDesc: "अति-तेज, सुरक्षित और निर्बाध कनेक्शन जो सभी कॉलिंग ऐप्स के लिए बेहतरीन काम करता है।",
                 vpnFeat1: "सभी कॉलिंग ऐप्स के लिए सर्वश्रेष्ठ",
                 vpnFeat2: "असीमित डेटा और हाई-स्पीड सर्वर",
-                waBtn: "व्हाट्सएप पर संपर्क करें और ऑर्डर करें"
+                travelHeading: "फ़्लाइट टिकट और वीज़ा सेवाएं",
+                travelBadge: "सर्वश्रेष्ठ दरें",
+                travelDesc: "सस्ते फ़्लाइट टिकट, परिवार यात्रा वीज़ा और संपूर्ण यात्रा सहायता।",
+                travelFeat1: "घरेलू और अंतर्राष्ट्रीय फ़्लाइट टिकट",
+                travelFeat2: "पारिवारिक विजिट वीज़ा सहायता",
+                waSim: "सिम कार्ड के लिए व्हाट्सएप पर संपर्क करें",
+                waVpn: "15 SAR वाला VPN प्राप्त करें",
+                waTravel: "टिकट या वीज़ा के लिए संपर्क करें"
             },
             bn: {
                 selectLang: "ভাষা নির্বাচন:",
@@ -309,7 +370,7 @@
                 resRate: "লাইভ রেট:",
                 resFee: "ফি:",
                 resFinal: "পরিবার পাবে:",
-                heroTitle: "🌟 ডিজিটাল এবং যোগাযোগ সেবায় স্বাগতম",
+                heroTitle: "🌟 ডিজিটাল এবং ভ্রমণ সেবায় স্বাগতম",
                 heroSub: "সৌদি আরবে সেরা এবং সাশ্রয়ী সেবা",
                 simHeading: "নতুন সিম কার্ড (প্যাকেজ ডিসকাউন্ট)",
                 simBadge: "২০% ছাড়",
@@ -321,7 +382,14 @@
                 vpnDesc: "অতি দ্রুত, নিরাপদ এবং অবিচ্ছিন্ন সংযোগ যা সমস্ত কলিং অ্যাপের জন্য নিখুঁতভাবে কাজ করে।",
                 vpnFeat1: "সকল কলিং অ্যাপের জন্য সেরা",
                 vpnFeat2: "সীমাহীন ডেটা এবং হাই-স্পিড সার্ভার",
-                waBtn: "হোয়াটসঅ্যাপে যোগাযোগ করুন এবং অর্ডার করুন"
+                travelHeading: "ফ্লাইট টিকিট এবং ভিসা সেবা",
+                travelBadge: "সেরা রেট",
+                travelDesc: "সস্তা ফ্লাইট টিকিট, ফ্যামিলি ভিজিট ভিসা এবং সম্পূর্ণ ভ্রমণ সহায়তা।",
+                travelFeat1: "ডমেস্টিক এবং আন্তর্জাতিক ফ্লাইট টিকিট",
+                travelFeat2: "ফ্যামিলি ভিজিট ভিসা সহায়তা",
+                waSim: "সিম কার্ডের জন্য হোয়াটসঅ্যাপে যোগাযোগ করুন",
+                waVpn: "১৫ রিালের ভিপিএন নিন",
+                waTravel: "টিকিট বা ভিসার জন্য যোগাযোগ করুন"
             }
         };
 
@@ -356,6 +424,30 @@
                 { name: "Barq App", fee: 5, margin: +0.05 }
             ]
         };
+
+        // اسمارٹ واٹس ایپ ڈائریکٹ میسজ جنریٹر
+        function openWhatsApp(service) {
+            let lang = document.getElementById('langSelect').value;
+            let text = "";
+
+            if (service === 'sim') {
+                if (lang === 'ur') text = "سلام! مجھے نئے سم کارڈ (STC/Zain) اور پیکج ڈسکاؤنٹ کے بارے میں معلومات چاہیے۔";
+                else if (lang === 'ar') text = "سلام! أريد الاستفسار عن شرائح الاتصال الجديدة وخصومات الباقات.";
+                else text = "Hello! I need information about new SIM cards and package discounts.";
+            } else if (service === 'vpn') {
+                if (lang === 'ur') text = "سلام! مجھے 15 ریال والا پریمیم وی پی این (VPN) چاہیے۔";
+                else if (lang === 'ar') text = "سلام! أريد شراء خدمة VPN المميزة بـ 15 ريال.";
+                else text = "Hello! I want to order the 15 SAR Premium VPN service.";
+            } else if (service === 'travel') {
+                if (lang === 'ur') text = "سلام! مجھے سستے فلائٹ ٹکٹس یا فیملی وزٹ ویزا کے سلسلے میں مدد چاہیے۔";
+                else if (lang === 'ar') text = "سلام! أريد المساعدة في تذاكر الطيران أو تأشيرات الزيارة العائلية.";
+                else text = "Hello! I need assistance with flight tickets or family visit visas.";
+            } else {
+                text = "Hello! I visited your KSA Hub and need assistance.";
+            }
+
+            window.open(`https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
+        }
 
         async function fetchLiveRates() {
             try {
@@ -396,6 +488,7 @@
 
         function changeLanguage() {
             let lang = document.getElementById('langSelect').value;
+            localStorage.setItem('ksa_preferred_lang', lang); // یوزر کی زبان یاد رکھنا
             let t = translations[lang] || translations['en'];
             
             document.getElementById('htmlRoot').setAttribute('dir', (lang === 'en' || lang === 'hi' || lang === 'bn') ? 'ltr' : 'rtl');
@@ -414,7 +507,7 @@
             document.getElementById('resFeeLabel').innerText = t.resFee;
             document.getElementById('resFinalLabel').innerText = t.resFinal;
 
-            // بزنس پیج کے نئے خوبصورت ٹیکسٹز
+            // بزنس پیج کے ٹیکسٹز
             document.getElementById('bizHeroTitle').innerText = t.heroTitle;
             document.getElementById('bizHeroSub').innerText = t.heroSub;
             document.getElementById('simCardHeading').innerText = t.simHeading;
@@ -427,7 +520,18 @@
             document.getElementById('vpnDesc').innerText = t.vpnDesc;
             document.getElementById('vpnFeat1').innerText = t.vpnFeat1;
             document.getElementById('vpnFeat2').innerText = t.vpnFeat2;
-            document.getElementById('waBtnText').innerText = t.waBtn;
+            
+            // ٹریول سیکشن ٹیکسٹز
+            document.getElementById('travelHeading').innerText = t.travelHeading;
+            document.getElementById('travelBadge').innerText = t.travelBadge;
+            document.getElementById('travelDesc').innerText = t.travelDesc;
+            document.getElementById('travelFeat1').innerText = t.travelFeat1;
+            document.getElementById('travelFeat2').innerText = t.travelFeat2;
+
+            // واٹس ایپ بٹن ٹیکسٹز
+            document.getElementById('waSimBtn').innerText = t.waSim;
+            document.getElementById('waVpnBtn').innerText = t.waVpn;
+            document.getElementById('waTravelBtn').innerText = t.waTravel;
         }
 
         function updateProviders() {
@@ -474,6 +578,11 @@
         }
 
         window.onload = function() {
+            // پچھلی محفوظ کردہ زبان لوڈ کرنا
+            let savedLang = localStorage.getItem('ksa_preferred_lang');
+            if (savedLang && translations[savedLang]) {
+                document.getElementById('langSelect').value = savedLang;
+            }
             changeLanguage();
             fetchLiveRates();
         };
